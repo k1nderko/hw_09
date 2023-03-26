@@ -12,6 +12,8 @@ def command_error(func):
 
 def args_error(func):
     def inner():
+        if not func():
+            return 'No name or phone, try again or enter help'
         try:
             return func()
         except IndexError:

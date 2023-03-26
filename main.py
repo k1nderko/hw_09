@@ -5,7 +5,7 @@ contacts = {}
 
 def command_error(func):
     def inner(input_com):
-        if func(input_com) == None:
+        if not func(input_com):
             return 'Unknown command. Enter help for to see all commands'
         return func(input_com)
     return inner  
@@ -16,6 +16,9 @@ def args_error(func):
             return func()
         except IndexError:
             return 'No name or phone, try again or enter help'
+        except KeyError:
+            return 'No name or phone, try again or enter help'
+
     return inner
 
 def hello() -> str:
